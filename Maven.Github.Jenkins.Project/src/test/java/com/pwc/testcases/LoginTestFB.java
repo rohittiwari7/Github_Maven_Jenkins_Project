@@ -11,8 +11,11 @@ public class LoginTestFB extends BaseClass
 	@Test
 	public void loginApp( ) 
 	{    
-		LoginPage loginPage=PageFactory.initElements(driver, LoginPage.class);
-		loginPage.loginFB( excel.getStringData("login", 0, 0), excel.getStringData("login", 0, 1));
+       //System.out.println("FB page is displaying= "+driver.getTitle());
+		
+	LoginPage loginPage=PageFactory.initElements(driver, LoginPage.class);
+	loginPage.loginFB( config.getDataFromConfig("username"), config.getDataFromConfig("password"));
+		
 	}
 	
 	}

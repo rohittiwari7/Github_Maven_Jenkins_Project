@@ -5,7 +5,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
+import com.beust.jcommander.Parameter;
 import com.pwc.utility.BrowserFactory;
 import com.pwc.utility.ConfigDataProvider;
 import com.pwc.utility.ExcelDataProvider;
@@ -22,15 +24,18 @@ public class BaseClass
 	public void setupSuite()
 	{
 		config=new ConfigDataProvider();
-		excel=new ExcelDataProvider();
+		//excel=new ExcelDataProvider();
 	}
 	
 	
-	
+@Parameters({"browser","URL"})
 @BeforeClass
-	public void setup() 
+	public void setup(String browser, String appURL) 
 	{
-		BrowserFactory.StartApplication(driver, config.getBrowser() , config.getAppURL() );
+		//driver=BrowserFactory.StartApplication(driver, config.getBrowser() , config.getAppURL() );
+		
+	// maven parameterization from pom.xml level
+	 driver=BrowserFactory.StartApplication(driver, browser , appURL );
 	}
    
 	@AfterClass
@@ -40,7 +45,7 @@ public class BaseClass
 	}
 	
 	
-	@AfterMethod
+@AfterMethod
 	public void tearDownMethod()
 	{
 	utilities.captureScreenshots(driver);	
