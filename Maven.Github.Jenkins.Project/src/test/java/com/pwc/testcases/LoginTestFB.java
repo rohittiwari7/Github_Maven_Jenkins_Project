@@ -10,11 +10,13 @@ public class LoginTestFB extends BaseClass
 {
 	@Test
 	public void loginApp( ) 
-	{    
-       //System.out.println("FB page is displaying= "+driver.getTitle());
-		
+	{  
+		logger=report.createTest("Login acitvity of FB");
+       
+	logger.info("starting application");
 	LoginPage loginPage=PageFactory.initElements(driver, LoginPage.class);
 	loginPage.loginFB( config.getDataFromConfig("username"), config.getDataFromConfig("password"));
+	logger.info("Login Successfully");
 		
 	}
 	
